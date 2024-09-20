@@ -11,7 +11,6 @@ function Meals() {
       setIsFetching(true);
       const response = await fetch("http://localhost:3000/meals");
       const resData = await response.json();
-      console.log(resData);
       if (!response.ok) {
         setError(true);
         setIsFetching(false);

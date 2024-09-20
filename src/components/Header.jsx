@@ -1,19 +1,21 @@
 import { useContext, useState } from "react";
 import Logo from "../assets/logo.jpg";
 import CartContext from "../store/CartContext";
+import UserProgressContext from "../store/UserProgressContext";
 import React from "react";
 import Button from "./UI/Button";
 import Modal from "./UI/Modal";
 
 function Header() {
   const { items } = useContext(CartContext);
+  const userProgressCtx = useContext(UserProgressContext);
   const [openCart, setOpenCart] = useState(false);
   const totalNumberOfCartItems = items.reduce((total, item) => {
     return total + item.quantity;
   }, 0);
 
   function handleCartClick() {
-    setOpenCart(true);
+    userProgressCtx.showCart();
   }
   return (
     <>
@@ -28,7 +30,6 @@ function Header() {
           </Button>
         </nav>
       </header>
-      <Modal open={openCart} />
     </>
   );
 }
